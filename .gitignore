@@ -26,7 +26,8 @@ node_modules
 dist
 .env
 .env.*
-backend/.env
+!.env.example
+!backend/.env.example
 
 
 
