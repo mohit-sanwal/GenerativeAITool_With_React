@@ -15,6 +15,8 @@ const groq = new OpenAI({
   baseURL: process.env.GROQ_API_URL,
 });
 
+console.log("KEY LENGTH:", process.env.GROQ_API_KEY?.length);
+
 app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;
