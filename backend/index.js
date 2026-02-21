@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import {GROQ_API_URL} from './utils/urls';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY,
-  baseURL: process.env.GROQ_API_URL,
+  baseURL: GROQ_API_URL,
 });
 
 console.log("KEY LENGTH:", process.env.GROQ_API_KEY?.length);
@@ -26,8 +27,8 @@ console.log("KEY HAS SPACES:", process.env.GROQ_API_KEY?.includes(" "));
 console.log("KEY HAS NEWLINE:", process.env.GROQ_API_KEY?.includes("\n"));
 console.log("AUTH HEADER VALUE:", `Bearer ${process.env.GROQ_API_KEY}`.slice(0, 15) + "...");
 console.log("API URL:", "https://api.groq.com/openai/v1/chat/completions");
-console.log("llm model", process.env.LLM_MODEL_NAME);
 console.log("===== DEBUG END =====");
+console.log("llm model", process.env.LLM_MODEL_NAME);
 
 app.post("/chat", async (req, res) => {
   try {
