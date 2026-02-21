@@ -16,6 +16,17 @@ const groq = new OpenAI({
 });
 
 console.log("KEY LENGTH:", process.env.GROQ_API_KEY?.length);
+console.log("KEY STARTS WITH:", process.env.GROQ_API_KEY?.slice(0, 4));
+console.log("===== DEBUG START =====");
+console.log("ENV KEY EXISTS:", !!process.env.GROQ_API_KEY);
+console.log("ENV KEY LENGTH:", process.env.GROQ_API_KEY?.length);
+console.log("KEY FIRST 5 CHARS:", process.env.GROQ_API_KEY?.slice(0, 5));
+console.log("KEY LAST 5 CHARS:", process.env.GROQ_API_KEY?.slice(-5));
+console.log("KEY HAS SPACES:", process.env.GROQ_API_KEY?.includes(" "));
+console.log("KEY HAS NEWLINE:", process.env.GROQ_API_KEY?.includes("\n"));
+console.log("AUTH HEADER VALUE:", `Bearer ${process.env.GROQ_API_KEY}`.slice(0, 15) + "...");
+console.log("API URL:", "https://api.groq.com/openai/v1/chat/completions");
+console.log("===== DEBUG END =====");
 
 app.post("/chat", async (req, res) => {
   try {
