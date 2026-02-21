@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
-import {GROQ_API_URL} from './utils/urls';
+import {GROQ_API_URL} from './utils/urls.js';
 
 dotenv.config();
 
