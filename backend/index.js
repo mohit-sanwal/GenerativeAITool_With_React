@@ -26,6 +26,7 @@ console.log("KEY HAS SPACES:", process.env.GROQ_API_KEY?.includes(" "));
 console.log("KEY HAS NEWLINE:", process.env.GROQ_API_KEY?.includes("\n"));
 console.log("AUTH HEADER VALUE:", `Bearer ${process.env.GROQ_API_KEY}`.slice(0, 15) + "...");
 console.log("API URL:", "https://api.groq.com/openai/v1/chat/completions");
+console.log("llm model", process.env.LLM_MODEL_NAME);
 console.log("===== DEBUG END =====");
 
 app.post("/chat", async (req, res) => {
