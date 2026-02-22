@@ -26,7 +26,6 @@ function App() {
     setMessages((prev) => [...prev, userMessage]);
     setQuery("");
     setLoading(true);
-    console.log('process.env', import.meta.env);
     const res = await fetch(`${import.meta.env.VITE_GENERATIVE_AI_API_BASE_URL}${CHAT_URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -51,8 +50,12 @@ function App() {
       <div className="w-1/5 bg-zinc-800 p-4 hidden md:block">
         <h1 className="text-xl font-semibold">AI Assistant</h1>
         <p className="text-zinc-400 text-sm mt-4">
-          Future: Chat History Here
+          {/* Future: Chat History Here */}
         </p>
+        <div className="absolute bottom-5"> 
+            <p>Author:</p>
+            <p>Mohit Sanwal</p>
+        </div>
       </div>
 
       {/* Main Area */}
