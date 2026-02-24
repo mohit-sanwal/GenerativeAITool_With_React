@@ -6,7 +6,7 @@ export default function ChatMessage({ message }) {
 
   return (
     <div
-      className={`flex w-full ${
+      className={`flex ${
         isUser ? "justify-end" : "justify-start"
       }`}
     >
