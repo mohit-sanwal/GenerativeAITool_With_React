@@ -33,6 +33,10 @@ app.post("/chat", async (req, res) => {
   }
 });
 
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
+
 app.listen(PORT, () =>
   console.log("Server running on port 5000")
 );
