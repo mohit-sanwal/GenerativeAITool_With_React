@@ -34,6 +34,7 @@ app.post("/chat", async (req, res) => {
 });
 
 app.get("/health", (req, res) => {
+  console.log("Health hit at:", new Date().toISOString());
   res.send("OK");
 });
 
