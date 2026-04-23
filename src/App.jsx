@@ -7,8 +7,24 @@ function App() {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isWarmingUp, setIsWarmingUp] = useState(true);
 
   const bottomRef = useRef(null);
+
+  // to check server health
+  useEffect(() => {
+    const warmUpServer = async () => {
+      try {
+        await fetch(`${import.meta.env.VITE_GENERATIVE_AI_API_BASE_URL}/health`);
+      } catch (err) {
+        console.log("Warmup failed:", err);
+      } finally {
+        setIsWarmingUp(false);
+      }
+    };
+    warmUpServer();
+  }, [])
+
 
   // Auto scroll
   useEffect(() => {
@@ -44,7 +60,9 @@ function App() {
   };
 
   return (
+    <>
     <div className="h-dvh w-full bg-zinc-900 text-white flex flex-col md:flex-row overflow-hidden">
+     
       
       {/* Sidebar Placeholder (for future chat list) */}
       <div className="hidden md:flex md:w-1/5 bg-zinc-800 p-4 relative">
@@ -60,6 +78,11 @@ function App() {
 
       {/* Main Area */}
       <div className="flex-1 w-full flex flex-col overflow-hidden">
+         {isWarmingUp && (
+      <div className="bg-yellow-600 text-black text-center py-2 text-sm">
+        Waking up server... first request may take ~30s
+      </div>
+    )}
 
   {/* Messages */}
   <div className="flex-1 overflow-y-auto px-4 py-4 md:p-6 space-y-4">
@@ -107,8 +130,9 @@ function App() {
   </div>
 </div>
 
-</div>
+      </div>
     </div>
+    </>
   );
 }
 
